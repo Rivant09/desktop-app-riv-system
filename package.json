@@ -1,0 +1,74 @@
+{
+  "name": "desktop-app-riv-system",
+  "version": "0.0.1",
+  "bin": "bin/",
+  "description": "RivSystem Desktop App",
+  "main": "public/electron.ts",
+  "scripts": {
+    "react-start": "react-scripts start",
+    "react-build": "react-scripts build",
+    "react-test": "react-scripts test",
+    "react-eject": "react-scripts eject",
+    "electron-build": "electron-builder",
+    "build": "yarn run react-build && yarn run electron-builder",
+    "start": "concurrently \"cross-env BROWSER=none yarn run react-start\" \"wait-on http://localhost:3000 && electron .\"",
+    "package-mac": "electron-packager . --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "package-win": "electron-packager . fazt-community-desktop --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Fazt community Desktop\"",
+    "package-linux": "electron-packager . fazt-community-desktop --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/linux/icon.png --prune=true --out=release-builds",
+    "dist": "electron-builder"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rivant09/riv-system.git"
+  },
+  "author": "Antonio J. Poumian Rivero",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rivant09/riv-system/issues"
+  },
+  "build": {
+    "productName": "RivSystem Desktop",
+    "win": {
+      "target": [
+        "nsis",
+        "msi"
+      ],
+      "icon": "assets/icons/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "deb",
+        "snap",
+        "rpm"
+      ],
+      "icon": "assets/icons/icon.png"
+    }
+  },
+  "homepage": "./",
+  "dependencies": {
+    "cross-env": "^7.0.2",
+    "electron-is-dev": "^1.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-helmet": "^6.1.0",
+    "react-icons": "^3.11.0",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.3"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.0.2",
+    "@testing-library/user-event": "^12.1.3",
+    "@types/react": "^16.9.49",
+    "@types/react-dom": "^16.9.8",
+    "@types/react-helmet": "^6.1.0",
+    "@types/react-router-dom": "^5.1.5",
+    "concurrently": "^5.3.0",
+    "electron": "^10.1.1",
+    "electron-builder": "^22.8.0",
+    "electron-package": "^0.1.0",
+    "node-sass": "^4.14.1",
+    "typescript": "^4.0.2",
+    "wait-on": "^5.2.0"
+  }
+}
